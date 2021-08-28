@@ -1,1 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,700i|Source+Sans+Pro');
+
+$logo-font: 'Playfair Display';
+$header-font: 'Sans';
+$text-font: 'Sans';
+
+
+$main-color: rgb(250, 152, 25);
+$sec-color: #2B4C6F;
+$bg-color: rgba(146, 146, 146, 0.527);
+$logo-color: red;
+$header-color: grey;
+$text-color: black;
+$text-color2: white;
+
 $base-size: 12px;
+
+$transition: all 0.5s;
+
+.root {
+  padding: 0 5px 5px 5px;
+  font-family: 'Serif';
+}
+
+h1 {
+  font-size: 50px;
+  font-family: $logo-font;
+  font-style: italic;
+  color: $main-color;
+  text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+h2 {
+  font-family: $text-font;
+  font-size: 40px;
+}
+
+h3 {
+  color: $text-color2;
+  font-size: 35px;
+}

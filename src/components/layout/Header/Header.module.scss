@@ -1,4 +1,25 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  display: flex;
+  flex-direction: row;
+
+  .toolbar {
+
+    .title {
+      font-family: $logo-font;
+      color: $text-color2;
+      font-size: 30px;
+      font-style: italic;
+
+      Span {
+        color: $main-color;
+      }
+    }
+    .link {
+      font-family: $logo-font;
+      color: $text-color2;
+      text-decoration: none;
+    }
+  }
+}

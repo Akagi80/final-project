@@ -1,4 +1,70 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .top {
+      display: flex;
+      padding: 10px;
+      flex-direction: column;
+      text-align: center;
+      background-image: url('https://i.postimg.cc/2S21ZV3J/main-image.jpg');
+      background-size: cover;
+
+      .linkField {
+        display:flex;
+        justify-content: center;
+
+        .link {
+          text-align: center;
+          width: 300px;
+          font-family: $logo-font;
+          font-size: 30px;
+          color: $text-color2;
+          text-decoration: none;
+          background-color: $sec-color;
+          background-position: 100% 0;
+          background-size: 300%;
+          transition: $transition;
+          opacity: 80%;
+        }
+
+        .link:hover {
+          background-color: $main-color;
+          background-position: 0 100%;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .card {
+      display: flex;
+      justify-content: space-around;
+      flex-basis: 100%;
+      flex-wrap: wrap;
+
+      &__item {
+        flex-basis: 30%;
+        max-width: 27%;
+        min-width: 300px;
+        margin: 12px;
+        flex-grow: 1;
+
+        .image {
+          max-height: 30vh;
+        }
+
+        .client {
+          font-style: italic;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
