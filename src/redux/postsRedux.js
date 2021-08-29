@@ -1,8 +1,9 @@
 /* selectors */
-export const getAll = ({posts}) => posts.data;
+export const getAll = ({products}) => products.data;
+export const getOne = ({products}, id) => products.data.filter(product => product.id == id);
 
 /* action name creator */
-const reducerName = 'posts';
+const reducerName = 'products';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 /* action types */

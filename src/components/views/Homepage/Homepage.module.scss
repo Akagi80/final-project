@@ -16,6 +16,7 @@
       text-align: center;
       background-image: url('https://i.postimg.cc/2S21ZV3J/main-image.jpg');
       background-size: cover;
+      background-position: 100%;
 
       .linkField {
         display:flex;
@@ -57,7 +58,7 @@
         flex-grow: 1;
 
         .image {
-          max-height: 30vh;
+          height: 30vh;
         }
 
         .client {

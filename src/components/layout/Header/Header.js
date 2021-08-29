@@ -32,7 +32,10 @@ const Component = ({ className }) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <AppBar position='static'>
+      <AppBar
+      position='static'
+      color='inherit'
+      >
         <Toolbar className={styles.toolbar}>
           <IconButton
             edge='start'
@@ -44,7 +47,7 @@ const Component = ({ className }) => {
             <HomeIcon/>
           </IconButton>
           <Typography variant='h6' className={clsx(classes.title, styles.title)}>
-            <span>e</span>-skateboards
+            <span>e</span>skateboards
           </Typography>
           <IconButton
             aria-label='account of current user'

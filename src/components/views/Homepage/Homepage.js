@@ -4,20 +4,23 @@ import { Link } from 'react-router-dom';
 
 import clsx from 'clsx';
 
+import { connect } from 'react-redux';
+import { getAll } from '../../../redux/postsRedux';
+
 import styles from './Homepage.module.scss';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 
 
-const Component = ({className, children}) => {
+const Component = ({className, productsAll}) => {
   return (
     <div className={clsx(className, styles.root)}>
       <div className={styles.content}>
         <div className={styles.top}>
           <h1>Twoja unikalna deska w zasięgu ręki</h1>
-          <h3>Dzieki naszemu prostemu konfiguratorowi w łatwy sposób połączysz elementy w swoją wymarzoną deskę</h3>
           <div className={styles.linkField}>
             <Link to={'/product/:id'} className={styles.link}>
               Konfigurator
@@ -28,66 +31,31 @@ const Component = ({className, children}) => {
           <h2>W tym maczeliście palce:</h2>
         </div>
         <div className={styles.card}>
-          <Card className={styles.card__item}>
-            <CardMedia
-              className={styles.image}
-              component='img'
-              image='https://i.postimg.cc/63r08Sgf/pexels-edward-jenner-4252666.jpg'
-            />
-            <CardContent>
-              <Typography
-                variant='body2'
-                color='textSecondary'
-                component='p'
-              >
-              </Typography>
-              <div>
-                <Typography className={styles.client} component='p' variant='subtitle2'>
-                  Michał, Warszawa
-                </Typography>
-              </div>
-            </CardContent>
-          </Card>
-          <Card className={styles.card__item}>
-            <CardMedia
-              className={styles.image}
-              component='img'
-              image='https://i.postimg.cc/63r08Sgf/pexels-edward-jenner-4252666.jpg'
-            />
-            <CardContent>
-              <Typography
-                variant='body2'
-                color='textSecondary'
-                component='p'
-              >
-              </Typography>
-              <div>
-                <Typography className={styles.client} component='p' variant='subtitle2'>
-                  Agnieszka, Kraków
-                </Typography>
-              </div>
-            </CardContent>
-          </Card>
-          <Card className={styles.card__item}>
-            <CardMedia
-              className={styles.image}
-              component='img'
-              image='https://i.postimg.cc/63r08Sgf/pexels-edward-jenner-4252666.jpg'
-            />
-            <CardContent>
-              <Typography
-                variant='body2'
-                color='textSecondary'
-                component='p'
-              >
-              </Typography>
-              <div>
-                <Typography className={styles.client} component='p' variant='subtitle2'>
-                  Adam, Wrocław
-                </Typography>
-              </div>
-            </CardContent>
-          </Card>
+          {productsAll.map((product) => (
+            <Card key={product.id} className={styles.card__item}>
+              <CardActionArea
+                href={`/product/${product.id}`}>
+                <CardMedia
+                  className={styles.image}
+                  component='img'
+                  image={product.photo}
+                />
+                <CardContent>
+                  <Typography
+                    variant='body2'
+                    color='textSecondary'
+                    component='p'
+                  >
+                  </Typography>
+                  <div>
+                    <Typography className={styles.client} component='p' variant='subtitle2'>
+                      {product.title}
+                    </Typography>
+                  </div>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          ))}
         </div>
       </div>
     </div>
@@ -99,7 +67,13 @@ Component.propTypes = {
   className: PropTypes.string,
 };
 
+const mapStateToProps = state => ({
+  productsAll: getAll(state),
+});
+
+const Container = connect(mapStateToProps)(Component);
+
 export {
-  Component as Homepage,
+  Container as Homepage,
   Component as HomepageComponent,
 };

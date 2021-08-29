@@ -4,7 +4,7 @@ import { ProductComponent } from './Product';
 
 describe('Component Product', () => {
   it('should render without crashing', () => {
-    const component = shallow(<ProductComponent />);
+    const component = shallow(<ProductComponent productOne={[]}/>);
     expect(component).toBeTruthy();
   });
 });
