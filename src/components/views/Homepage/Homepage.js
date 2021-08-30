@@ -51,6 +51,9 @@ const Component = ({className, productsAll}) => {
                     <Typography className={styles.client} component='p' variant='subtitle2'>
                       {product.title}
                     </Typography>
+                    <Typography className={styles.client} component='p' variant='subtitle2'>
+                      Price: {product.price}$
+                    </Typography>
                   </div>
                 </CardContent>
               </CardActionArea>

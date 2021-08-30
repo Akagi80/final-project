@@ -2,34 +2,64 @@
 
 .root {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
 
   .postCard {
-    width: 60%;
     margin: 10px;
-    background-color: rgb(220, 230, 236);
     padding: 10px;
+    background-color: $text-color2;
 
-    .image {
-      width: 40%;
-      height: 30%;
-    }
     .title {
-        font-size: 40px;
-        color: rgb(21, 20, 121);
+      font-size: 40px;
+      color: $text-color;
+      border-bottom: 2px solid $text-color;
     }
+
+    .gallery {
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .image {
+        width: 325px;
+        height: auto;
+      }
+
+      :hover {
+        top: 25px;
+        left:-35px;
+        display:block;
+        z-index:999;
+        transform: scale(1.5);
+        transition: $transition;
+      }
+    }
+
     .text {
-      font-size: 18px;
+      font-size: 22px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid $text-color;
     }
 
     .info {
-      font-size: 16px;
+      font-size: 24px;
       font-style: italic;
     }
 
     .button {
+      margin-left: 10px;
       text-decoration: none;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .root {
+    .gallery {
+      flex-direction: column;
     }
   }
 }

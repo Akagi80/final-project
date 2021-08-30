@@ -54,9 +54,6 @@ const Component = ({ className }) => {
             aria-controls='menu-appbar'
             aria-haspopup='true'
           >
-            <Link to={'/'} className={styles.link}>
-              login
-            </Link>
           </IconButton>
           <div>
             <IconButton

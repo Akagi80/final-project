@@ -13,6 +13,7 @@
       display: flex;
       padding: 10px;
       flex-direction: column;
+      height: 30vh;
       text-align: center;
       background-image: url('https://i.postimg.cc/2S21ZV3J/main-image.jpg');
       background-size: cover;
@@ -52,14 +53,10 @@
 
       &__item {
         flex-basis: 30%;
-        max-width: 27%;
+        max-width: 30%;
         min-width: 300px;
         margin: 12px;
         flex-grow: 1;
-
-        .image {
-          height: 30vh;
-        }
 
         .client {
           font-style: italic;
