@@ -1,4 +1,11 @@
 export const initialState = {
+  content: [
+      {
+        title: 'Twoja unikalna deska w zasięgu ręki!',
+        photo: 'https://i.postimg.cc/rmB2qZwH/main-image.jpg',
+      },
+    ],
+
   products: {
     data: [
       {
@@ -21,10 +28,10 @@ export const initialState = {
       },
       {
         id: 3,
-        photo: 'https://i.postimg.cc/j5tZtPLS/Exway-Wave-1.jpg',
-        photo2: 'https://i.postimg.cc/C5W8Lpms/Exway-Wave-2.jpg',
-        photo3: 'https://i.postimg.cc/TYDmNh37/Exway-Wave-3.jpg',
-        title: 'EXWAY WAVE',
+        photo: 'https://i.postimg.cc/wMjDFzJK/Evolve-GTR.jpg',
+        photo2: 'https://i.postimg.cc/MHBf9GTF/Evolve-GTR-2.jpg',
+        photo3: 'https://i.postimg.cc/sXqZPWVW/Evolve-GTR-3.jpg',
+        title: 'Evolve GTR',
         price: '2003',
         text: 'Vivamus sapien nulla, porta sit amet est at, bibendum viverra massa. Vestibulum dignissim tincidunt velit vel laoreet. Curabitur ut enim odio. Praesent aliquet, risus id venenatis mollis, orci lacus ultrices dolor, vitae lacinia nisl odio sed neque. Sed laoreet sollicitudin dolor vel luctus. Ut elementum nec felis id scelerisque. Vivamus quis neque feugiat nulla tincidunt cursus. Phasellus nibh diam, ornare sed consectetur sit amet, lacinia quis nulla. Aliquam tellus ante, mattis at turpis vitae, blandit lobortis turpis.',
       },

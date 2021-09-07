@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getAll } from '../../../redux/postsRedux';
+import { getAll, getContent } from '../../../redux/postsRedux';
 
 import styles from './Homepage.module.scss';
 import Card from '@material-ui/core/Card';
@@ -15,21 +14,18 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 
 
-const Component = ({className, productsAll}) => {
+const Component = ({className, contentAll, productsAll}) => {
   return (
     <div className={clsx(className, styles.root)}>
       <div className={styles.content}>
-        <div className={styles.top}>
-          <h1>Twoja unikalna deska w zasięgu ręki</h1>
-          <div className={styles.linkField}>
-            <Link to={'/product/:id'} className={styles.link}>
-              Konfigurator
-            </Link>
+
+        {contentAll.map((content) => (
+          <div key={content}>
+            <img src={content.photo} alt='image'></img>
+            <h1 className={styles.title}>{content.title}</h1>
           </div>
-        </div>
-        <div>
-          <h2>W tym maczeliście palce:</h2>
-        </div>
+        ))}
+
         <div className={styles.card}>
           {productsAll.map((product) => (
             <Card key={product.id} className={styles.card__item}>
@@ -66,12 +62,15 @@ const Component = ({className, productsAll}) => {
 };
 
 Component.propTypes = {
+  title: PropTypes.node,
+  price: PropTypes.node,
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   productsAll: getAll(state),
+  contentAll: getContent(state),
 });
 
 const Container = connect(mapStateToProps)(Component);

@@ -1,4 +1,5 @@
 /* selectors */
+export const getContent = ({content}) => content;
 export const getAll = ({products}) => products.data;
 export const getOne = ({products}, id) => products.data.filter(product => product.id == id);
 
