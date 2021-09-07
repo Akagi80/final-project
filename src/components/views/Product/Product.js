@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getOne } from '../../../redux/postsRedux';
+import { getOne } from '../../../redux/productRedux';
 
 import styles from './Product.module.scss';
 import NativeSelect from '@material-ui/core/NativeSelect';

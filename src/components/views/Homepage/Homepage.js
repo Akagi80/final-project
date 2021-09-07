@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getAll, getContent } from '../../../redux/postsRedux';
+import { getAll, getContent } from '../../../redux/productRedux';
 
 import styles from './Homepage.module.scss';
 import Card from '@material-ui/core/Card';
