@@ -1,11 +1,11 @@
-import React from 'react';
+import React,  { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getOne } from '../../../redux/productRedux';
+import { getOneProduct, fetchProductById } from '../../../redux/productRedux';
 
 import styles from './Product.module.scss';
 import NativeSelect from '@material-ui/core/NativeSelect';
@@ -30,27 +30,33 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-const Component = ({className, productOne}) => {
+const Component = ({className, productOne, fetchProductById}) => {
+  useEffect(() => {
+    fetchProductById();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [age, setAge] = React.useState('');
+  const [setAge] = useState('');
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  if (!productOne) {
+    return <div></div>
+  }
 
   return (
     <div className={clsx(className, styles.root)}>
       <div className={styles.postCard}>
 
-        {productOne.map(product => (
-          <div key={product.id}>
-            <p className={styles.title}>{product.title}</p>
-            <p className={styles.text}>{product.text}</p>
+          <div key={productOne.id}>
+            <p className={styles.title}>{productOne.title}</p>
+            <p className={styles.text}>{productOne.text}</p>
             <div className={styles.gallery}>
-              <img className={styles.image} src={product.photo} alt='' />
-              <img className={styles.image} src={product.photo2} alt='' />
-              <img className={styles.image} src={product.photo3} alt='' />
+              <img className={styles.image} src={productOne.photo} alt='' />
+              <img className={styles.image} src={productOne.photo2} alt='' />
+              <img className={styles.image} src={productOne.photo3} alt='' />
             </div>
-            <p className={styles.info}>{product.price}$</p>
+            <p className={styles.info}>{productOne.price}$</p>
             <NativeSelect
               id="demo-customized-select-native"
               value=''
@@ -72,8 +78,6 @@ const Component = ({className, productOne}) => {
               </Fab>
             </Link>
           </div>
-
-        ))}
       </div>
   </div>
   );
@@ -81,22 +85,23 @@ const Component = ({className, productOne}) => {
 
 Component.propTypes = {
   className: PropTypes.string,
-  productOne: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      photo: PropTypes.string,
-      title: PropTypes.string,
-      text: PropTypes.string,
-      price: PropTypes.string,
-    })
-  ),
+  fetchProductById: PropTypes.func,
+  photo: PropTypes.string,
+  title: PropTypes.string,
+  text: PropTypes.string,
+  price: PropTypes.string,
+
 };
 
 const mapStateToProps = (state, props) => ({
-  productOne: getOne(state, props.match.params.id),
+  productOne: getOneProduct(state, props.match.params.id),
 });
 
-const Container = connect(mapStateToProps)(Component);
+const mapDispatchToProps = (dispatch, props) => ({
+  fetchProductById: () => dispatch(fetchProductById(props.match.params.id)),
+});
+
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   Container as Product,
