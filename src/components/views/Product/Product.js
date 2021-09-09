@@ -1,6 +1,5 @@
 import React,  { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 
 import clsx from 'clsx';
 
@@ -44,6 +43,20 @@ const Component = ({className, productOne, fetchProductById}) => {
     return <div></div>
   }
 
+  const cart = {
+    products: [
+      {productOne},
+    ]
+  };
+
+  const sendToCart = () => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  const clearCart = () => {
+    localStorage.removeItem('cart');
+  }
+
   return (
     <div className={clsx(className, styles.root)}>
       <div className={styles.postCard}>
@@ -67,16 +80,24 @@ const Component = ({className, productOne, fetchProductById}) => {
               <option value={2}>2</option>
               <option value={3}>3</option>
             </NativeSelect>
-            <Link className={styles.button} to={'/'}>
               <Fab
                 size='small'
                 color='default'
                 aria-label='add'
                 variant='extended'
+                onClick={sendToCart}
               >
                 Add to Cart
               </Fab>
-            </Link>
+              <Fab
+                size='small'
+                color='default'
+                aria-label='add'
+                variant='extended'
+                onClick={clearCart}
+              >
+                Clear Cart
+              </Fab>
           </div>
       </div>
   </div>
