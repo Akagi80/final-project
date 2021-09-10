@@ -1,4 +1,4 @@
-import React,  { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
@@ -47,23 +47,24 @@ const Component = ({className, productOne, fetchProductById}) => {
         prodName = productOne.title,
         pordPrice = productOne.price;
   //console.log(prodId, prodName, pordPrice);
-  
+
   const cart = {
-    products: [
-      {id: prodId, name: prodName, price: pordPrice},
-    ]
+    id: prodId,
+    name: prodName,
+    price: pordPrice,
+    quantity: 2,
   };
-  
+
   const sendToCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
   };
 
-  const cartProducts = JSON.parse(localStorage.getItem('cart')).products;
-  console.log(cartProducts);
+  //const cartProducts = JSON.parse(localStorage.getItem('cart')).products;
+  //console.log(cartProducts);
 
-  const clearCart = () => {
-    localStorage.removeItem('cart');
-  };
+  //const clearCart = () => {
+  //  localStorage.removeItem('cart');
+  //};
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -96,15 +97,6 @@ const Component = ({className, productOne, fetchProductById}) => {
                 onClick={sendToCart}
               >
                 Add to Cart
-              </Fab>
-              <Fab
-                size='small'
-                color='default'
-                aria-label='add'
-                variant='extended'
-                onClick={clearCart}
-              >
-                Clear Cart
               </Fab>
           </div>
       </div>
