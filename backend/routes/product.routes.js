@@ -7,7 +7,7 @@ router.get('/products', async (req, res) => {
   try {
     res.json(await Product.find({}));
   }
-  catch (error) {
+  catch (err) {
     res.status(500).json({message: err});
   }
 });

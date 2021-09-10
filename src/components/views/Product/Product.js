@@ -41,21 +41,29 @@ const Component = ({className, productOne, fetchProductById}) => {
 
   if (!productOne) {
     return <div></div>
-  }
-
-  const cart = {
-    products: [
-      {productOne},
-    ]
   };
 
+  const prodId = productOne._id,
+        prodName = productOne.title,
+        pordPrice = productOne.price;
+  //console.log(prodId, prodName, pordPrice);
+  
+  const cart = {
+    products: [
+      {id: prodId, name: prodName, price: pordPrice},
+    ]
+  };
+  
   const sendToCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
-  }
+  };
+
+  const cartProducts = JSON.parse(localStorage.getItem('cart')).products;
+  console.log(cartProducts);
 
   const clearCart = () => {
     localStorage.removeItem('cart');
-  }
+  };
 
   return (
     <div className={clsx(className, styles.root)}>
