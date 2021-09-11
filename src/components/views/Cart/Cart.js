@@ -7,6 +7,8 @@ import styles from './Cart.module.scss';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import { withStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
+import Fab from '@material-ui/core/Fab';
+import Button from '@material-ui/core/Button';
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -31,6 +33,7 @@ const Component = ({className}) => {
 
   const clearCart = () => {
     localStorage.removeItem('cart');
+    window.location.reload();
   };
 
   const [setAge] = useState('');
@@ -40,31 +43,42 @@ const Component = ({className}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <h2>Cart</h2>
-      <p>Products:</p>
-      <p className={styles.name}>Name: {cartProducts.name}</p>
-      <p className={styles.price}>Price: {cartProducts.price}$</p>
-      <p className={styles.quantity}>Quantity{cartProducts.quantity}</p>
-      <p>
-      <NativeSelect
-        id="demo-customized-select-native"
-        value=''
-        onChange={handleChange}
-        input={<BootstrapInput />}
-      >
-        <option value={1}>1</option>
-        <option value={2}>2</option>
-        <option value={3}>3</option>
-      </NativeSelect>
-        <button type="button">
-          Set order
-        </button>
-        <button type="button" onClick={clearCart}>
+      <h3>Your Products:</h3>
+      <div className={styles.prodList}>
+        <p className={styles.name}>name: {cartProducts.name}</p>
+        <p className={styles.price}>price: {cartProducts.price}$</p>
+        <p className={styles.quantity}>quantity: {cartProducts.quantity}</p>
+        <NativeSelect
+          id="quantity"
+          value=''
+          onChange={handleChange}
+          input={<BootstrapInput />}
+        >
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+        </NativeSelect>
+        <div className={styles.botton}>
+        <Button
+          variant="contained"
+          color='default'
+          href="/order"
+        >
+          Order
+        </Button>
+        </div>
+      </div>
+      <div className={styles.bootomCart}>
+        <Button
+          variant="contained"
+          color='default'
+          onClick={clearCart}
+        >
           Remove All Items
-        </button>
-      </p>
+        </Button>
+      </div>
     </div>
-  )
+  );
 };
 
 Component.propTypes = {

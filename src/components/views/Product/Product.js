@@ -80,7 +80,7 @@ const Component = ({className, productOne, fetchProductById}) => {
             </div>
             <p className={styles.info}>{productOne.price}$</p>
             <NativeSelect
-              id="demo-customized-select-native"
+              id="quantity"
               value=''
               onChange={handleChange}
               input={<BootstrapInput />}

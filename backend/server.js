@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 const productRoutes = require('./routes/product.routes');
+const orderRoutes = require('./routes/order.routes');
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(cors());
 
 // Endpoints
 app.use('/api', productRoutes);
+app.use('/api', orderRoutes);
 
 // Error
 app.use('/api', (req, res) => {

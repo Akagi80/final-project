@@ -5,12 +5,21 @@ import clsx from 'clsx';
 
 import styles from './Order.module.scss';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>Order Page</h2>
-    {children}
-  </div>
-);
+const Component = ({className, children}) => {
+
+  return (
+    <div className={clsx(className, styles.root)}>
+      <form className={styles.form}>
+        <input type="text" placeholder="First name" />
+        <input type="text" placeholder="Last name" />
+        <input type="phone" placeholder="Phone Number" />
+        <input type="email" placeholder="Email" />
+        <input type="textarea" placeholder="More informations..." />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
 
 Component.propTypes = {
   children: PropTypes.node,
