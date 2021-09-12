@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import { getOneProduct, fetchProductById } from '../../../redux/productRedux';
 
 import styles from './Product.module.scss';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import Select from '@material-ui/core/Select';
+import { MenuItem } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
@@ -34,9 +35,9 @@ const Component = ({className, productOne, fetchProductById}) => {
     fetchProductById();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [setAge] = useState('');
+  const [quantity, setQuantity] = useState('');
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setQuantity(event.target.value);
   };
 
   if (!productOne) {
@@ -45,14 +46,15 @@ const Component = ({className, productOne, fetchProductById}) => {
 
   const prodId = productOne._id,
         prodName = productOne.title,
-        pordPrice = productOne.price;
+        pordPrice = productOne.price,
+        prodAmount = quantity;
   //console.log(prodId, prodName, pordPrice);
 
   const cart = {
     id: prodId,
     name: prodName,
     price: pordPrice,
-    quantity: '',
+    quantity: prodAmount,
   };
 
   const sendToCart = () => {
@@ -81,16 +83,18 @@ const Component = ({className, productOne, fetchProductById}) => {
             <p className={styles.info}><span>Price:</span> {productOne.price}</p>
             <div className={styles.quantity}>
               <p><span>Quantity:</span></p>
-              <NativeSelect
-                id="quantity"
-                value=''
+              <Select
+                value={quantity}
+                className={styles.inner}
                 onChange={handleChange}
-                input={<BootstrapInput />}
+                input={<BootstrapInput name="currency" id="currency-customized-select" />}
               >
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-              </NativeSelect>
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+              </Select>
             </div>
               <Button
                 variant="contained"

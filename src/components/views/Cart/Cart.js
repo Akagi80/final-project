@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import styles from './Cart.module.scss';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import Select from '@material-ui/core/Select';
+import { MenuItem } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
@@ -35,29 +36,33 @@ const Component = ({className}) => {
     window.location.reload();
   };
 
-  const [setAge] = useState('');
+  const [setQuantity] = useState('');
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setQuantity(event.target.value);
   };
+
+  const cartProductsPrice = cartProducts.price * cartProducts.quantity || 0;
 
   return (
     <div className={clsx(className, styles.root)}>
       <h3>Your Products:</h3>
       <div className={styles.prodList}>
         <p className={styles.name}><span>Model:</span> {cartProducts.name}</p>
-        <p className={styles.price}><span>Price:</span> {cartProducts.price}</p>
+        <p className={styles.price}><span>Price:</span> ${cartProductsPrice}</p>
         <div className={styles.quantity}>
-          <p><span>Quantity:</span> {cartProducts.quantity}</p>
-          <NativeSelect
-            id="quantity"
-            value=''
+          <p><span>Quantity:</span></p>
+          <Select
+            value={cartProducts.quantity}
+            className={styles.inner}
             onChange={handleChange}
-            input={<BootstrapInput />}
+            input={<BootstrapInput name="currency" id="currency-customized-select" />}
           >
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-          </NativeSelect>
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+          </Select>
         </div>
         <div className={styles.botton}>
         <Button

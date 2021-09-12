@@ -26,8 +26,8 @@ router.get('/orders/:id', async (req, res) => {
 
 router.post('/orders', async (req, res) => {
   try {
-    const { product, price, firstname, lastname, phone, email, text } = req.body;
-    const newOrder = new Order({ product, price, firstname, lastname, phone, email, text });
+    const { product, price, quantity, firstname, lastname, phone, email, text } = req.body;
+    const newOrder = new Order({ product, price, quantity, firstname, lastname, phone, email, text });
     await newOrder.save();
     res.json({ message: 'OK' });
   }

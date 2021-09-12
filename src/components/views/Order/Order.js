@@ -11,10 +11,13 @@ import styles from './Order.module.scss';
 
 const Component = ({className, addOrder, fetchAddOrder}) => {
   const cartProducts = (JSON.parse(localStorage.getItem('cart')) || {});
+  const cartProductsPrice = cartProducts.price * cartProducts.quantity || 0;
+  console.log('total price: ', cartProductsPrice);
 
   const [order, setOrder] = useState({
     product: cartProducts.name ,
-    price: cartProducts.price,
+    price: cartProductsPrice,
+    quantity: cartProducts.quantity,
     firstname: '',
     lastname: '',
     phone: '',
@@ -25,6 +28,11 @@ const Component = ({className, addOrder, fetchAddOrder}) => {
   const handleChange = (event) => {
     setOrder({ ...order, [event.target.name]: event.target.value });
   }
+
+  const clearCart = () => {
+    localStorage.removeItem('cart');
+    window.location.reload();
+  };
 
   const submitForm = (event) => {
     event.preventDefault();
@@ -37,12 +45,15 @@ const Component = ({className, addOrder, fetchAddOrder}) => {
         // id: '',
         product: '',
         price: '',
+        quantity: '',
         firstname: '',
         lastname: '',
         phone: '',
         email: '',
         text: ''
       });
+      alert('The order has been sent');
+      clearCart();
     } else {
       alert('Please complete all fields');
     }
@@ -50,14 +61,17 @@ const Component = ({className, addOrder, fetchAddOrder}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <form className={styles.form} action="/orders" method="POST" enctype="multipart/form-data" onSubmit={submitForm}>
+      <form className={styles.form} action="/orders" method="POST" encType="multipart/form-data" onSubmit={submitForm}>
         <h3>Your Products:</h3>
         <div className={styles.prodList}>
           <label className={styles.formInput}>
-            Model: <input type="text"  placeholder={cartProducts.name} name="product" value={cartProducts.name} onChange={handleChange} />
+            Model: <input type="text" placeholder={cartProducts.name} name="product" value={cartProducts.name} onChange={handleChange} readOnly />
           </label>
           <label className={styles.formInput}>
-            Price: <input type="text" placeholder={cartProducts.price} name="price" value={cartProducts.price} onChange={handleChange} />
+            Price: $<input type="text" placeholder={cartProductsPrice} name="price" value={cartProductsPrice} onChange={handleChange} readOnly />
+          </label>
+          <label className={styles.formInput}>
+            Quantity: <input type="text" placeholder={cartProducts.quantity} name="price" value={cartProducts.quantity} onChange={handleChange} readOnly />
           </label>
         </div>
         <div className={styles.clientData}>
@@ -85,6 +99,9 @@ const Component = ({className, addOrder, fetchAddOrder}) => {
 
 Component.propTypes = {
   className: PropTypes.string,
+  orderAll: PropTypes.array,
+  addOrder: PropTypes.func,
+  fetchAddOrder: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
