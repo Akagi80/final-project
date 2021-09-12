@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
+// const session = require('express-session');
+// const MongoStore = require('connect-mongo')(session);
 
 const productRoutes = require('./routes/product.routes');
 const orderRoutes = require('./routes/order.routes');
@@ -33,6 +35,12 @@ app.use('*', (req, res) => {
 // Connects our backend code with the database (mongoose)
 mongoose.connect('mongodb://localhost:27017/skateDB', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
+/*
+app.use(session({
+  secret: 'shhh!',
+  store: new MongoStore({ mongooseConnection: db }),
+}));
+*/
 db.once('open', () => {
   console.log('Connected to the database');
 });

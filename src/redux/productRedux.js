@@ -60,7 +60,7 @@ export const fetchProductById = (id) => {
 };
 
 /* reducer */
-export const reducer = (statePart = initialState, action = {}) => {
+export const productsReducer = (statePart = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_START: {
       return {

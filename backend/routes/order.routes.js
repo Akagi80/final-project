@@ -26,8 +26,8 @@ router.get('/orders/:id', async (req, res) => {
 
 router.post('/orders', async (req, res) => {
   try {
-    const { firstname, lastname, phone, email, text } = req.body;
-    const newOrder = new Order({ firstname, lastname, phone, email, text });
+    const { product, price, firstname, lastname, phone, email, text } = req.body;
+    const newOrder = new Order({ product, price, firstname, lastname, phone, email, text });
     await newOrder.save();
     res.json({ message: 'OK' });
   }
@@ -35,7 +35,5 @@ router.post('/orders', async (req, res) => {
     res.status(500).json({message: err});
   }
 });
-
-
 
 module.exports = router;

@@ -6,15 +6,28 @@
   justify-content: center;
   max-width: 800px;
   margin: 0 auto;
+  background-color: $bg-color;
+  padding: 10px;
+
+  span {
+    font-weight: 400;
+    font-size: 16px;
+  }
 
   .prodList {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     font-size: 24px;
     align-items: center;
+
+    .quantity {
+      display: flex;
+    }
   }
+
   .bootomCart {
     display: flex;
     justify-content: flex-end;
+    margin-top: 30px;
   }
 }

@@ -7,7 +7,7 @@ $text-font: 'Sans';
 
 $main-color: rgb(250, 152, 25);
 $sec-color: #2B4C6F;
-$bg-color: rgba(146, 146, 146, 0.527);
+$bg-color: rgb(240, 240, 240);
 $logo-color: red;
 $header-color: grey;
 $text-color: black;
@@ -39,4 +39,8 @@ h3 {
   color: $main-color;
   font-size: 35px;
   text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+span {
+  color: $main-color;
 }

@@ -10,7 +10,7 @@ import styles from './Product.module.scss';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import { withStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
-import Fab from '@material-ui/core/Fab';
+import Button from '@material-ui/core/Button';
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -52,7 +52,7 @@ const Component = ({className, productOne, fetchProductById}) => {
     id: prodId,
     name: prodName,
     price: pordPrice,
-    quantity: 2,
+    quantity: '',
   };
 
   const sendToCart = () => {
@@ -78,26 +78,28 @@ const Component = ({className, productOne, fetchProductById}) => {
               <img className={styles.image} src={productOne.photo2} alt='' />
               <img className={styles.image} src={productOne.photo3} alt='' />
             </div>
-            <p className={styles.info}>{productOne.price}$</p>
-            <NativeSelect
-              id="quantity"
-              value=''
-              onChange={handleChange}
-              input={<BootstrapInput />}
-            >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-            </NativeSelect>
-              <Fab
-                size='small'
+            <p className={styles.info}><span>Price:</span> {productOne.price}</p>
+            <div className={styles.quantity}>
+              <p><span>Quantity:</span></p>
+              <NativeSelect
+                id="quantity"
+                value=''
+                onChange={handleChange}
+                input={<BootstrapInput />}
+              >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+              </NativeSelect>
+            </div>
+              <Button
+                variant="contained"
                 color='default'
-                aria-label='add'
-                variant='extended'
                 onClick={sendToCart}
+                href="/Cart"
               >
                 Add to Cart
-              </Fab>
+              </Button>
           </div>
       </div>
   </div>
