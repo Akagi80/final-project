@@ -1,66 +1,40 @@
-import { initialState } from "./initialState";
 import Axios from 'axios';
 
-/* selectors */
+// selectors
+export const getAllOrders = ({ orders }) => orders;
 
+// action name creator
 const reducerName = 'orders';
 const createActionName = name => `app/${reducerName}/${name}`;
 
-/* action types */
-const FETCH_START = createActionName('FETCH_START');
-const FETCH_ERROR = createActionName('FETCH_ERROR');
+// action types
 const ADD_ORDER = createActionName('ADD_ORDER');
 
-/* action creators */
-export const fetchStarted = payload => ({ payload, type: FETCH_START });
-export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+// action creators
 export const addOrder = payload => ({ payload, type: ADD_ORDER });
 
+// thunk creators
+export const fetchAddOrder = newOrder => {
 
-/* thunk creators */
-
-export const fetchAddOrder = () => {
-
-  return (dispatch, getState,) => {
-    dispatch(fetchStarted());
-
-    Axios
-      .order(`http://localhost:8000/api/orders/add`)
-      .then(res => {
-        dispatch(addOrder());
-      })
-      .catch(err => {
-        dispatch(fetchError(err.message || true));
-      });
+  return async dispatch => {
+    try {
+      let res = await Axios.post(`http://localhost:8000/api/orders`, newOrder);
+      dispatch(addOrder(res));
+    }
+    catch(err) {
+      dispatch('Error:', err.message);
+    }
   };
 };
 
-/* reducer */
-export const ordersReducer = (statePart = initialState, action = {}) => {
+// reducer
+export const ordersReducer = (statePart = [], action = {}) => {
   switch (action.type) {
-    case FETCH_START: {
-      return {
-        ...statePart,
-        loading: {
-          active: true,
-          error: false,
-        },
-      };
-    }
-    case FETCH_ERROR: {
-      return {
-        ...statePart,
-        loading: {
-          active: false,
-          error: action.payload,
-        },
-      };
-    }
     case ADD_ORDER: {
       return {
         ...statePart,
-        data: [...statePart.data, action.payload],
-      }
+        data: [action.payload],
+      };
     }
     default:
       return statePart;

@@ -6,37 +6,48 @@
   justify-content: center;
   max-width: 800px;
   margin: 0 auto;
+  background-color: $bg-color;
 
-  .prodList {
-    display: flex;
-    justify-content: space-around;
-    font-size: 20px;
-    align-items: center;
-  }
   .form {
     display: flex;
     flex-direction: column;
 
-    .clientrData {
+    .prodList {
       display: flex;
       flex-direction: column;
+      justify-content: space-around;
+      font-size: 20px;
       align-items: center;
     }
 
     .formInput {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
       align-items: center;
-      width: 70%;
       height: 30px;
-      margin: 20px 0;
-      font-size: 20px;
+      margin: 10px 0;
 
       input, textarea {
         border: none;
-        width: 80%;
         font-size: 20px;
+        background-color: $bg-color;
+      }
+    }
+
+    .clientData {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      input, textarea {
+        background-color: $text-color2;
+        width: 300px;
+        font-family: $text-font;
+      }
+
+      textarea {
+        font-size: 20px;
+        border: none;
       }
     }
   }

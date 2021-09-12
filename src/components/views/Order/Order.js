@@ -9,10 +9,18 @@ import { addOrder, fetchAddOrder } from '../../../redux/orderRedux';
 
 import styles from './Order.module.scss';
 
-const Component = ({className}) => {
-  const [order, setOrder] = useState('');
+const Component = ({className, addOrder, fetchAddOrder}) => {
   const cartProducts = (JSON.parse(localStorage.getItem('cart')) || {});
 
+  const [order, setOrder] = useState({
+    product: cartProducts.name ,
+    price: cartProducts.price,
+    firstname: '',
+    lastname: '',
+    phone: '',
+    email: '',
+    text: ''
+  });
 
   const handleChange = (event) => {
     setOrder({ ...order, [event.target.name]: event.target.value });
@@ -20,8 +28,7 @@ const Component = ({className}) => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    if(order.firstname.length > 1 && order.lastname.length > 1){
-      order.created = new Date().toISOString();
+    if(order.firstname && order.lastname){
       addOrder(order);
       fetchAddOrder(order);
       console.log('add', order);
@@ -53,7 +60,7 @@ const Component = ({className}) => {
             Price: <input type="text" placeholder={cartProducts.price} name="price" value={cartProducts.price} onChange={handleChange} />
           </label>
         </div>
-        <div className={styles.data}>
+        <div className={styles.clientData}>
           <label className={styles.formInput}>
             <input type="text" placeholder="First name" name="firstname" value={order.firstname} onChange={handleChange} />
           </label>
@@ -66,8 +73,8 @@ const Component = ({className}) => {
           <label className={styles.formInput}>
             <input type="email" placeholder="Email" name="email" value={order.email} onChange={handleChange} />
           </label>
-          <label className={styles.formInput}>
-            <textarea  type="textarea" placeholder="More informations..." name="text" value={order.text} onChange={handleChange}/>
+          <label className={styles.formTextarea}>
+            <textarea  type="textarea" placeholder="More informations..." name="text" value={order.text} onChange={handleChange} rows="4" cols="50" />
           </label>
         </div>
         <button type="submit"><span>Submit</span></button>
@@ -81,7 +88,7 @@ Component.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  ordersAll: getAll(state),
+  orderAll: getAll(state),
 });
 
 const mapDispatchToProps = dispatch => ({
