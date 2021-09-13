@@ -50,5 +50,15 @@
         border: none;
       }
     }
+    button[type=submit] {
+      font-size: 24px;
+      cursor: pointer;
+      border: 2px solid $main-color;
+      transition: $transition;
+
+      &:hover {
+        background-color: $header-color;
+      }
+    }
   }
 }

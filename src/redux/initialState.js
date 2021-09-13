@@ -1,8 +1,8 @@
 export const initialState = {
   content: [
       {
-        title: 'Twoja unikalna deska w zasięgu ręki!',
-        photo: 'https://i.postimg.cc/rmB2qZwH/main-image.jpg',
+        title: 'The Board of Your Dreams',
+        photo: 'https://i.postimg.cc/FH7DwRS7/main-image-2.jpg',
       },
     ],
 

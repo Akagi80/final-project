@@ -36,7 +36,7 @@ const Component = ({className}) => {
     window.location.reload();
   };
 
-  const [setQuantity] = useState('');
+  const [quantity, setQuantity] = useState('');
   const handleChange = (event) => {
     setQuantity(event.target.value);
   };

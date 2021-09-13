@@ -8,6 +8,7 @@ import { getAll } from '../../../redux/productRedux';
 import { addOrder, fetchAddOrder } from '../../../redux/orderRedux';
 
 import styles from './Order.module.scss';
+import Button from '@material-ui/core/Button';
 
 const Component = ({className, addOrder, fetchAddOrder}) => {
   const cartProducts = (JSON.parse(localStorage.getItem('cart')) || {});
@@ -93,6 +94,13 @@ const Component = ({className, addOrder, fetchAddOrder}) => {
         </div>
         <button type="submit"><span>Submit</span></button>
       </form>
+      <Button
+        variant="contained"
+        color='default'
+        href="/"
+      >
+        Back to shop
+      </Button>
     </div>
   );
 };
