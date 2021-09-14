@@ -33,7 +33,7 @@ app.use('*', (req, res) => {
 });
 
 // Connects our backend code with the database (mongoose)
-mongoose.connect('mongodb://localhost:27017/skateDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://admin:admin123@cluster0.kmtsd.mongodb.net/skateDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 /*
 app.use(session({
