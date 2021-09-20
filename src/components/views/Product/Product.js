@@ -48,7 +48,7 @@ const Component = ({className, productOne, fetchProductById}) => {
         prodName = productOne.title,
         pordPrice = productOne.price,
         prodAmount = quantity;
-  //console.log(prodId, prodName, pordPrice);
+  console.log(prodId, prodName, pordPrice, prodAmount);
 
   const cart = {
     id: prodId,
@@ -58,7 +58,12 @@ const Component = ({className, productOne, fetchProductById}) => {
   };
 
   const sendToCart = () => {
-    localStorage.setItem('cart', JSON.stringify(cart));
+    if(!prodAmount){
+      alert('Please complete Quantity');
+    } else {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.open('/cart', '_self');
+    }
   };
 
   //const cartProducts = JSON.parse(localStorage.getItem('cart')).products;
@@ -100,7 +105,6 @@ const Component = ({className, productOne, fetchProductById}) => {
                 variant="contained"
                 color='default'
                 onClick={sendToCart}
-                href="/Cart"
               >
                 Add to Cart
               </Button>

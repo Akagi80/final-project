@@ -27,7 +27,7 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-const Component = ({className}) => {
+const Component = ({className, productOne}) => {
   const cartProducts = (JSON.parse(localStorage.getItem('cart')) || {});
   console.log('dodane produkty:', cartProducts.id);
 
@@ -41,7 +41,20 @@ const Component = ({className}) => {
     setQuantity(event.target.value);
   };
 
-  const cartProductsPrice = cartProducts.price * cartProducts.quantity || 0;
+  const newQuantity =  quantity || cartProducts.quantity;
+
+  const cartProductsPrice = cartProducts.price * newQuantity || 0;
+
+  const cart = {
+    id: cartProducts.id,
+    name: cartProducts.name,
+    price: cartProducts.price,
+    quantity: newQuantity,
+  };
+
+  const sendToCart = () => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -52,7 +65,7 @@ const Component = ({className}) => {
         <div className={styles.quantity}>
           <p><span>Quantity:</span></p>
           <Select
-            value={cartProducts.quantity}
+            value={newQuantity}
             className={styles.inner}
             onChange={handleChange}
             input={<BootstrapInput name="currency" id="currency-customized-select" />}
@@ -65,13 +78,14 @@ const Component = ({className}) => {
           </Select>
         </div>
         <div className={styles.botton}>
-        <Button
-          variant="contained"
-          color='default'
-          href="/order"
-        >
-          Check Out
-        </Button>
+          <Button
+            variant="contained"
+            color='default'
+            onClick={sendToCart}
+            href="/Order"
+          >
+            Check Out
+          </Button>
         </div>
       </div>
       <div className={styles.bootomCart}>
